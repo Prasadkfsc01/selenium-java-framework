@@ -1,0 +1,37 @@
+
+# Maven build outputs
+target/
+*.class
+
+# Eclipse
+.metadata/
+.settings/
+.project
+.classpath
+.factorypath
+bin/
+
+# IntelliJ
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Logs and temporary files
+*.log
+*.tmp
+.DS_Store
+
+# Local credentials and secrets
+.env
+.env.*
+secrets.properties
+secrets.json
+*.key
+
+# Test reports
+allure-results/
+allure-report/
+test-output/
+screenshots/
