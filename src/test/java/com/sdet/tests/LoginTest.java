@@ -12,44 +12,32 @@ import org.testng.annotations.Test;
 
 public class LoginTest {
 
-    @BeforeMethod(alwaysRun = true)
-    public void setUp() {
-        DriverFactory.initDriver(
-            ConfigManager.get("browser")
-        );
-    }
+	@BeforeMethod(alwaysRun = true)
+	public void setUp() {
+		DriverFactory.initDriver(ConfigManager.get("browser"));
+		DriverFactory.getDriver().get(ConfigManager.get("baseUrl"));
 
-    @Test
-    public void verifySuccessfulLogin() {
+	}
 
-        DriverFactory.getDriver().get(
-            ConfigManager.get("baseUrl")
-        );
+	@Test
+	public void verifySuccessfulLogin() {
 
-        LoginPage loginPage = new LoginPage(DriverFactory.getDriver());
+		LoginPage loginPage = new LoginPage(DriverFactory.getDriver());
+		loginPage.login("standard_user", "secret_sauce");
 
-        loginPage.login(
-            "standard_user",
-            "secret_sauce"
-        );
+		Assert.assertTrue(DriverFactory.getDriver().getCurrentUrl().contains("/inventory.html"),
+				"Login failed: Inventory page not displayed");
+	}
 
-        Assert.assertTrue(
-            DriverFactory.getDriver()
-                .getCurrentUrl()
-                .contains("/inventory.html"),
-            "Login failed: Inventory page not displayed"
-        );
-    }
+	@AfterMethod(alwaysRun = true)
+	public void tearDown() {
 
-    @AfterMethod(alwaysRun = true)
-    public void tearDown() {
-    	
-    	try {
+		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        DriverFactory.quitDriver();
-    }
+		DriverFactory.quitDriver();
+	}
 }
