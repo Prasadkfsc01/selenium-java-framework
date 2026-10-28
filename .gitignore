@@ -1,15 +1,13 @@
 
-# Maven build outputs
+# Maven
 target/
 *.class
 
 # Eclipse
-.metadata/
 .settings/
 .project
 .classpath
-.factorypath
-bin/
+.metadata/
 
 # IntelliJ
 .idea/
@@ -18,20 +16,19 @@ bin/
 # VS Code
 .vscode/
 
-# Logs and temporary files
-*.log
-*.tmp
+# Operating system
 .DS_Store
 
-# Local credentials and secrets
-.env
-.env.*
-secrets.properties
-secrets.json
-*.key
-
-# Test reports
+# Logs and reports
+*.log
+test-output/
 allure-results/
 allure-report/
-test-output/
 screenshots/
+
+# Secrets
+.env
+.env.*
+secrets.json
+secrets.properties
+*.key
